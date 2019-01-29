@@ -1,0 +1,21 @@
+{
+  "name": "wp-main-category",
+  "version": "0.1",
+  "description": "",
+  "license": "GPL-3.0-or-later",
+  "author": "Jacob Schweitzer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacobschweitzer/wp-main-category"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-uglify": "^2.1.2",
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  }
+}
