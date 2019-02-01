@@ -6,6 +6,7 @@ var WPMainCategoryGutenberg = ( function() {
 	const { addQueryArgs } = wp.url;
 	const apiFetch = wp.apiFetch;
 	const { sortBy, invoke } = lodash;
+	const { select } = wp.data;
 
 	const DEFAULT_QUERY = {
 		per_page: -1,
@@ -87,8 +88,38 @@ var WPMainCategoryGutenberg = ( function() {
 					let newID = this.props.terms.filter( termID => prevProps.terms.indexOf( termID ) === -1 );
 					if ( newID.length && ! this.isTermAvailable( newID[0] ) ) {
 						this.fetchTerms();
+						this.saveMainCategory();
 					}
 				}
+
+				const isSavingPost     = select( 'core/editor' ).isSavingPost();
+				const isAutosavingPost = select( 'core/editor' ).isAutosavingPost();
+				const isPreviewingPost = select( 'core/editor' ).isPreviewingPost();
+				console.log( select( 'core/editor' ) );
+
+				if ( isSavingPost && ! isAutosavingPost && ! isPreviewingPost ) {
+					this.saveMainCategory();
+				}
+			}
+
+			saveMainCategory() {
+				const data = {
+					value:   getMainCategoryId(),
+					post_id: document.getElementById( 'post_ID' ).value,
+					nonce:   wpmc.nonce,
+				};
+				wp.apiRequest( {
+					path:   `/wpmc/v1/update-main-category`,
+					method: 'POST',
+					data:   data
+				} ).then(
+					( data ) => {
+						return data;
+					},
+					( err ) => {
+						return err;
+					}
+				);
 			}
 
 			updateData() {
@@ -173,20 +204,8 @@ var WPMainCategoryGutenberg = ( function() {
 					value:   setMainCategoryId( value )
 				} );
 
-				const data = {
-					value:   getMainCategoryId(),
-					post_id: document.getElementById( 'post_ID' ).value,
-					nonce:   wpmc.nonce,
-				};
-				// @todo Only update when the post is saved.
-				wp.apiRequest( { path: `/wpmc/v1/update-main-category`, method: 'POST', data: data } ).then(
-					( data ) => {
-						return data;
-					},
-					( err ) => {
-						return err;
-					}
-				);
+				// @todo Utilize the Gutenberg preferred way to enable the Update button.
+				$( '.edit-post-header__settings' ).find( '.components-button.editor-post-publish-button' ).attr( 'aria-disabled', false );
 			}
 
 			isDisabled() {
