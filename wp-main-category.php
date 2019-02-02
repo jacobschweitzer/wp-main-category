@@ -5,7 +5,7 @@
  * Plugin URI: https://jacobschweitzer.com
  * Author: Jacob Schweitzer
  * Author URI: https://github.com/jacobschweitzer/wp-main-category
- * Version: 0.1
+ * Version: 0.2
  * Text Domain: wp-main-category
  * Domain Path: /languages/
  * License: GPLv2 or later
@@ -15,7 +15,7 @@
 
 define( 'WPMC__FILE__', __FILE__ );
 define( 'WPMC__DIR__', dirname( __FILE__ ) );
-define( 'WPMC__VERSION', '1.0.0' );
+define( 'WPMC__VERSION', '0.2' );
 
 require_once WPMC__DIR__ . '/includes/class-wp-main-category-setup.php';
 $wpmc_setup = new WP_Main_Category_Setup();
