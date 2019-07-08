@@ -7,6 +7,7 @@ var WPMainCategoryGutenberg = ( function() {
 	const apiFetch = wp.apiFetch;
 	const { sortBy, invoke } = lodash;
 	const { select } = wp.data;
+	const { __ } = wp.i18n;
 
 	const DEFAULT_QUERY = {
 		per_page: -1,
@@ -95,8 +96,6 @@ var WPMainCategoryGutenberg = ( function() {
 				const isSavingPost     = select( 'core/editor' ).isSavingPost();
 				const isAutosavingPost = select( 'core/editor' ).isAutosavingPost();
 				const isPreviewingPost = select( 'core/editor' ).isPreviewingPost();
-				console.log( select( 'core/editor' ) );
-
 				if ( isSavingPost && ! isAutosavingPost && ! isPreviewingPost ) {
 					this.saveMainCategory();
 				}
@@ -218,7 +217,7 @@ var WPMainCategoryGutenberg = ( function() {
 				return createElement(
 					SelectControl,
 					{
-						label: 'Primary Category',
+						label: __( 'Primary Category', 'wp-main-category' ),
 						value: primaryTermId,
 						className: 'wpmc-select',
 						onChange: this.onChange,

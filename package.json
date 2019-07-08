@@ -1,9 +1,12 @@
 {
   "name": "wp-main-category",
-  "version": "0.2",
+  "version": "0.2.0",
   "description": "",
   "license": "GPL-3.0-or-later",
   "author": "Jacob Schweitzer",
+  "scripts": {
+    "build": "gulp scripts"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jacobschweitzer/wp-main-category"
