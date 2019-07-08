@@ -96,8 +96,6 @@ var WPMainCategoryGutenberg = ( function() {
 				const isSavingPost     = select( 'core/editor' ).isSavingPost();
 				const isAutosavingPost = select( 'core/editor' ).isAutosavingPost();
 				const isPreviewingPost = select( 'core/editor' ).isPreviewingPost();
-				console.log( select( 'core/editor' ) );
-
 				if ( isSavingPost && ! isAutosavingPost && ! isPreviewingPost ) {
 					this.saveMainCategory();
 				}
