@@ -4,6 +4,9 @@
   "description": "",
   "license": "GPL-3.0-or-later",
   "author": "Jacob Schweitzer",
+  "scripts": {
+    "build": "gulp scripts"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jacobschweitzer/wp-main-category"
