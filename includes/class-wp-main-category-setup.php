@@ -30,11 +30,8 @@ class WP_Main_Category_Setup {
 
 		// Gather all the post types that use the category taxonomy.
 		foreach ( $post_types as $post_type ) {
-			if ( ! isset( $post_type->name ) ) {
-				continue;
-			}
-			if ( is_object_in_taxonomy( $post_type->name, 'category' ) ) {
-				$target_post_types[] = $post_type->name;
+			if ( is_object_in_taxonomy( $post_type, 'category' ) ) {
+				$target_post_types[] = $post_type;
 			}
 		}
 
